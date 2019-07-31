@@ -12,10 +12,11 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "element-ui": "^2.4.11",
+    "element-ui": "^2.11.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
