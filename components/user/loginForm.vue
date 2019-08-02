@@ -52,8 +52,10 @@ export default {
               message:'登录成功',
               type:'success'
             })
+             this.$store.commit('user/setUserinfo',res)
             // 跳转到首页
             setTimeout(() => {
+              // this.$store.commit('user/setUserinfo',res)
                         this.$router.replace("/")
                     }, 1000);
           }).catch(err=>{

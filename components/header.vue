@@ -22,11 +22,20 @@
         <el-dropdown v-if="$store.state.user.userInfo.token">
           <el-row type="flex" align="middle" class="el-dropdown-link">
             <nuxt-link to="#">
-              <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar" />
+              <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar" style="width:30px;" />
               {{$store.state.user.userInfo.user.nickname}}
             </nuxt-link>
             <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-row>
+           <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>
+                           <nuxt-link to="#">个人中心</nuxt-link>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                            <div @click="handleLogout">退出</div> 
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
           <!-- 其他代码... -->
         </el-dropdown>
 
@@ -37,7 +46,19 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+     handleLogout(){
+            const {commit} = this.$store;
+            commit("user/cleanUserInfo");
+            
+            this.$message({
+                message: "退出成功",
+                type: "success"
+            })
+        },
+  }
+};
 </script>
 <style lang="less">
 .header {

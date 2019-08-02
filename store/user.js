@@ -10,7 +10,14 @@ export const state = {
 export const mutations = {
 
     setUserinfo(state,data){
-        state.userinfo=data
+        console.log(data)
+        state.userInfo=data
+    },
+    cleanUserInfo(state, info){
+        if(process.browser){
+            localStorage.removeItem("userInfo");
+        }
+        state.userInfo = {};
     }
 }
 
