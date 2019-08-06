@@ -164,6 +164,7 @@ export default {
           value: this.form.departDate,
           message: "请选择出发时间"
         }
+        
       };
 
       let valid = true; // 表单验证结果
@@ -192,6 +193,16 @@ export default {
         path: "/air/flights",
         query: this.form
       });
+
+      const arr = [...this.$store.state.air.record]
+
+      arr.unshift(this.form)
+
+      if(arr.length>5){
+        arr.length = 5
+      }
+      // 调用vuex方法
+      this.$store.commit('air/setRecord',arr)
     }
   },
   mounted() {}

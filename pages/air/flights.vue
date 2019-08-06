@@ -36,7 +36,7 @@
 
       <!-- 侧边栏 -->
       <div class="aside">
-        <FlightsAside/>
+        <FlightsAside :data="cacheFlightsData"/>
       </div>
     </el-row>
   </section>
@@ -75,6 +75,11 @@ export default {
     FlightsItem,
     FlightsFilters,
     FlightsAside
+  },
+  watch:{
+    $route(){
+      this.getData()
+    }
   },
   methods: {
     getData() {
