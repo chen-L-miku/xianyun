@@ -27,7 +27,7 @@
       </el-form-item>
       <el-form-item label="到达城市">
         <el-autocomplete
-          v-model="form.arriveCity"
+          v-model="form.destCity"
           :fetch-suggestions="queryDestSearch"
           placeholder="请搜索到达城市"
           @select="handleDestSelect"
@@ -65,13 +65,12 @@ export default {
         { icon: "iconfont iconshuangxiang", name: "往返" }
       ],
       currentTab: 0,
-      depart: "",
-      arrive: "",
+      
       form: {
         departCity: "", // 出发城市
         departCode: "", // 出发城市代码
-        arriveCity: "", // 到达城市
-        arriveCode: "", // 到达城市代码
+        destCity: "", // 到达城市
+        destCode: "", // 到达城市代码
         departDate: "" // 日期字符串
       }
     };
@@ -123,7 +122,7 @@ export default {
         res.data.data.forEach(arr => {
           arr.value = arr.name.slice(0, -1);
           resArr.push(arr);
-          this.form.arriveCode = arr.sort;
+          this.form.destCode = arr.sort;
         });
         cb(resArr);
       });
@@ -142,11 +141,11 @@ export default {
 
     // 触发和目标城市切换时触发
     handleReverse() {
-      const { departCity, departCode, arriveCity, arriveCode } = this.form;
-      this.form.departCity = arriveCity;
-      this.form.departCode = arriveCode;
-      this.form.arriveCity = departCity;
-      this.form.arriveCode = departCode;
+      const { departCity, departCode, destCity, destCode } = this.form;
+      this.form.departCity = destCity;
+      this.form.departCode = destCode;
+      this.form.destCity = departCity;
+      this.form.destCode = departCode;
     },
 
     // 提交表单是触发
@@ -158,7 +157,7 @@ export default {
           message: "请选择出发城市"
         },
         dest: {
-          value: this.form.arriveCity,
+          value: this.form.destCity,
           message: "请选择到达城市"
         },
         departDate: {
